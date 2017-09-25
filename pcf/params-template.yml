@@ -1,0 +1,118 @@
+# GCP project to create the infrastructure in
+gcp_project_id: ${PROJECT_ID}
+
+# GCP credentials JSON. The service account must have the Editor role.
+gcp_service_account_key: '${SERVICE_ACT_KEY}'
+  
+
+# Identifier to prepend to GCP infrastructure names/labels
+gcp_resource_prefix: ${RESOURCE_PREFIX}
+
+# GCP region
+gcp_region: us-east1
+
+# GCP Zones
+gcp_zone_1: us-east1-b
+gcp_zone_2: us-east1-c
+gcp_zone_3: us-east1-d
+
+# Storage Location
+gcp_storage_bucket_location: US
+
+# GCP Interopable storage access key: https://console.cloud.google.com/storage/settings
+gcp_storage_access_key: ${GOOGLE_KEY}
+gcp_storage_secret_key: ${GOOGLE_SECRET}
+
+terraform_statefile_bucket: ${BUCKET_NAME}
+
+
+# Pivotal Network token: https://network.pivotal.io/users/dashboard/edit-profile
+pivnet_token: ${PIVNET_TOKEN}
+
+# Operations Manager credentials to set
+pcf_opsman_admin_username: ${OPSMAN_ADMIN}
+pcf_opsman_admin_password: ${OPSMAN_PASSWORD}
+
+# Operations Manager Trusted Certificates
+pcf_opsman_trusted_certs: |
+
+# Elastic Runtime Domain
+pcf_ert_domain: pcf.${DOMAIN_NAME} # This is the domain you will access ERT with
+opsman_domain_or_ip_address: opsman.pcf.${DOMAIN_NAME} # This should be your pcf_ert_domain with "opsman." as a prefix
+
+# Elastic Runtime SSL configuration
+# Set pcf_ert_ssl_cert to 'generate' if you'd like a self-signed cert to be
+# made
+pcf_ert_ssl_cert: generate
+pcf_ert_ssl_key:
+
+# Errands to disable prior to deploying ERT
+# Valid values:
+#   all
+#   none
+#   "" (empty string)
+#   Any combination of the following, separated by comma:
+#     smoke-tests
+#     push-apps-manager
+#     notifications
+#     notifications-ui
+#     push-pivotal-account
+#     autoscaling
+#     autoscaling-register-broker
+#     nfsbrokerpush
+ert_errands_to_disable: none
+
+# PCF Operations Manager minor version to install
+opsman_major_minor_version: ^${OM_MAJOR}\.${OM_MINOR}\..*$
+
+# PCF Elastic Runtime minor version to install
+#ert_major_minor_version: ^${ERT_MAJOR}\.${ERT_MINOR}\..*$
+ert_major_minor_version: srt-1.12.0-build.45 
+
+# Usernames must be 16 characters or fewer
+# DB Creds
+# Usernames must be 16 characters or fewer
+db_diego_username: ${GEN_USERNAME}
+db_diego_password: ${GEN_PASSWORD}
+db_notifications_username: ${GEN_USERNAME}
+db_notifications_password: ${GEN_PASSWORD}
+db_autoscale_username: ${GEN_USERNAME}
+db_autoscale_password: ${GEN_PASSWORD}
+db_uaa_username: ${GEN_USERNAME}
+db_uaa_password: ${GEN_PASSWORD}
+db_app_usage_service_username: ${GEN_USERNAME}
+db_app_usage_service_password: ${GEN_PASSWORD}
+db_ccdb_username: ${GEN_USERNAME}
+db_ccdb_password: ${GEN_PASSWORD}
+db_routing_username: ${GEN_USERNAME}
+db_routing_password: ${GEN_PASSWORD}
+
+db_accountdb_username: ${GEN_USERNAME}
+db_accountdb_password: ${GEN_PASSWORD}
+db_networkpolicyserverdb_username: ${GEN_USERNAME}
+db_networkpolicyserverdb_password: ${GEN_PASSWORD}
+db_nfsvolumedb_username: ${GEN_USERNAME}
+db_nfsvolumedb_password: ${GEN_PASSWORD}
+db_silk_username: ${GEN_USERNAME}
+db_silk_password: ${GEN_PASSWORD}
+db_locket_username: ${GEN_USERNAME}
+db_locket_password: ${GEN_PASSWORD}
+
+mysql_monitor_recipient_email: ${EMAIL_ADDRESS} # Email address for sending mysql monitor notifications
+mysql_backups: disable   # Whether to enable MySQL backups. (disable|s3|scp)
+
+#SCP backup config params (leave empty values if you're not using scp
+mysql_backups_scp_server:
+mysql_backups_scp_port:
+mysql_backups_scp_user:
+mysql_backups_scp_key:
+mysql_backups_scp_destination:
+mysql_backups_scp_cron_schedule:
+
+#S3 backup config params (leave empty values if you're not using s3)
+mysql_backups_s3_endpoint_url:
+mysql_backups_s3_bucket_name:
+mysql_backups_s3_bucket_path:
+mysql_backups_s3_access_key_id:
+mysql_backups_s3_secret_access_key:
+mysql_backups_s3_cron_schedule:
